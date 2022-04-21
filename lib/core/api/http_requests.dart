@@ -1,10 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:alice/alice.dart';
+import 'package:alice/core/alice_http_extensions.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_shortener_app/core/api/custom_exceptions.dart';
 
 import 'api_responses.dart';
+
+GlobalKey<NavigatorState> navigationKey = GlobalKey<NavigatorState>();
+Alice alice = Alice(showNotification: false, navigatorKey: navigationKey);
 
 class HttpRequests {
   Future<dynamic> post({
@@ -23,7 +29,7 @@ class HttpRequests {
           "content-type": "application/json",
           "Authorization": 'Bearer $token',
         },
-      );
+      ).interceptWithAlice(alice, body: body);
       response = ApiResponses.apiResponses(request);
     } on NotFoundException {
       throw FetchDataException('Endpoint not exists');
@@ -46,7 +52,7 @@ class HttpRequests {
           'Accept': 'application/json',
           'Authorization': 'Bearer $token',
         },
-      );
+      ).interceptWithAlice(alice);
       response = ApiResponses.apiResponses(request);
     } on SocketException {
       throw FetchDataException('No Internet connection');
@@ -72,7 +78,7 @@ class HttpRequests {
           "content-type": "application/json",
           "Authorization": 'Bearer $token',
         },
-      );
+      ).interceptWithAlice(alice, body: body);
       response = ApiResponses.apiResponses(request);
     } on NotFoundException {
       throw FetchDataException('Endpoint not exists');
