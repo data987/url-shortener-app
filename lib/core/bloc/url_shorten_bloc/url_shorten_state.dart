@@ -5,7 +5,7 @@ enum UrlShortenStatus { initial, loading, shortenSuccess, failure }
 class UrlShortenState extends Equatable {
   const UrlShortenState({
     this.status = UrlShortenStatus.initial,
-    this.urlShortenHistory = const UrlHistoryModel(urlShorten: []),
+    required this.urlShortenHistory,
   });
 
   final UrlShortenStatus status;
@@ -23,7 +23,7 @@ class UrlShortenState extends Equatable {
 
   @override
   String toString() {
-    return 'UrlState: { status: $status, urls: ${urlShortenHistory.urlShorten} }';
+    return 'UrlState: { status: $status, urls: ${urlShortenHistory.urlShortenList} }';
   }
 
   @override

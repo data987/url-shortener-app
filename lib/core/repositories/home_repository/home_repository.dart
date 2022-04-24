@@ -6,11 +6,10 @@ class HomeRepository {
 
   final ApiProvider apiProvider;
 
-  Future<UrlHistoryModel> postUrlToShorten(
-      {required String urlToShorten}) async {
+  Future<UrlShorten> postUrlToShorten({required String urlToShorten}) async {
     final Map<String, dynamic> postUrlResponse =
         await apiProvider.postUrlToShorten(urlToShorten);
-    final responseToModel = UrlHistoryModel.fromJson(postUrlResponse);
+    final responseToModel = UrlShorten.fromJson(postUrlResponse);
     return responseToModel;
   }
 }

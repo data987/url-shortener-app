@@ -7,4 +7,20 @@ abstract class UrlShortenEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class UrlsShortenFetch extends UrlShortenEvent {}
+class UrlsShortenFetch extends UrlShortenEvent {
+  const UrlsShortenFetch(this.url);
+
+  final String url;
+
+  @override
+  List<Object> get props => [url];
+}
+
+class RemovesUrl extends UrlShortenEvent {
+  const RemovesUrl(this.alias);
+
+  final String alias;
+
+  @override
+  List<Object> get props => [alias];
+}

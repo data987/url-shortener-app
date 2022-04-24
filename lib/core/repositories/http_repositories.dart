@@ -4,5 +4,5 @@ import 'package:http/http.dart' as http;
 
 http.Client httpClient = http.Client();
 
-final HomeRepository userRepository =
+final HomeRepository homeRepository =
     HomeRepository(apiProvider: ApiProvider(httpClient: httpClient));

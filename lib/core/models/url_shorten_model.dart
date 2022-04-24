@@ -7,19 +7,18 @@ String urlShortenModelToJson(UrlHistoryModel data) =>
     json.encode(data.toJson());
 
 class UrlHistoryModel {
-  const UrlHistoryModel({required this.urlShorten});
+  UrlHistoryModel({required this.urlShortenList});
 
-  final List<UrlShorten> urlShorten;
+  List<UrlShorten> urlShortenList;
 
   factory UrlHistoryModel.fromJson(Map<String, dynamic> json) =>
       UrlHistoryModel(
-        urlShorten: List<UrlShorten>.from(
-          json['url-shorten']
-              .map((url) => UrlShorten.fromJson(json['url-shorten'])),
+        urlShortenList: List<UrlShorten>.from(
+          json['url-shorten-list'].map((url) => UrlShorten.fromJson(url)),
         ),
       );
 
-  Map<String, dynamic> toJson() => {'url-shorten': urlShorten};
+  Map<String, dynamic> toJson() => {'url-shorten-list': urlShortenList};
 }
 
 class UrlShorten {
@@ -28,8 +27,8 @@ class UrlShorten {
     this.links,
   });
 
-  final String alias;
-  final Links? links;
+  String alias;
+  Links? links;
 
   factory UrlShorten.fromJson(Map<String, dynamic> json) => UrlShorten(
         alias: json['alias'],
