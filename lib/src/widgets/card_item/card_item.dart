@@ -22,28 +22,62 @@ class CardItem extends StatelessWidget {
       key: key,
       sizeFactor: animation,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 35.0),
+        padding: const EdgeInsets.only(
+          top: 20.0,
+          right: 25.0,
+          bottom: 10,
+          left: 25.0,
+        ),
+        margin: const EdgeInsets.only(bottom: 20.0),
+        decoration: BoxDecoration(
+            color: Colors.blueGrey[50],
+            borderRadius: BorderRadius.circular(15.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Alias: ${item.alias}'),
-            Text(
-              'Url: ${item.links?.self ?? 'There is no url'}',
-              style: TextStyle(
-                fontSize: SizeConfig.blockSizeHorizontal * 4,
-              ),
+            RichText(
+              text: TextSpan(
+                  text: 'Alias: ',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: item.alias,
+                        style: const TextStyle(fontWeight: FontWeight.w400))
+                  ]),
             ),
-            Text('Short: ${item.links?.short ?? 'There is no url shorten'}',
-                style: TextStyle(
-                  fontSize: SizeConfig.blockSizeHorizontal * 4,
-                )),
+            RichText(
+              text: TextSpan(
+                  text: 'Url: ',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: item.links?.self ?? 'There is no url',
+                        style: const TextStyle(fontWeight: FontWeight.w400))
+                  ]),
+            ),
+            RichText(
+              text: TextSpan(
+                  text: 'Short:\n',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: item.links?.short ?? 'There is no url shorten',
+                        style: const TextStyle(fontWeight: FontWeight.w400))
+                  ]),
+            ),
             Row(
               children: [
                 IconButton(onPressed: () {}, icon: const Icon(Icons.copy))
-                    .paddingOnly(right: 25.0),
+                    .paddingOnly(right: 10.0),
                 IconButton(
                     onPressed: onDelete,
-                    icon: const Icon(Icons.delete_outline_outlined))
+                    icon: Icon(
+                      Icons.delete_outline_outlined,
+                      color: Colors.red[400],
+                    ))
               ],
             ),
           ],

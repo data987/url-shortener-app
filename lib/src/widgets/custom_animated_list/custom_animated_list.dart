@@ -22,7 +22,6 @@ class _CustomAnimateListState extends State<CustomAnimateList> {
     if (oldWidget.urlList.length < widget.urlList.length) {
       _listKey.currentState
           ?.insertItem(0, duration: const Duration(milliseconds: 500));
-      // _items?.insert(0, widget.urlList.first);
     }
     super.didUpdateWidget(oldWidget);
   }

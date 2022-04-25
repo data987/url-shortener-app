@@ -13,11 +13,11 @@ class InputSearch extends StatefulWidget {
 }
 
 class _InputSearchState extends State<InputSearch> {
-  late TextEditingController controller;
+  late TextEditingController _textController;
 
   @override
   void initState() {
-    controller = TextEditingController();
+    _textController = TextEditingController();
     super.initState();
   }
 
@@ -28,13 +28,17 @@ class _InputSearchState extends State<InputSearch> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextField(
-          controller: controller,
+          controller: _textController,
         ).container(
-            padding:
-                const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
-            width: SizeConfig.blockSizeHorizontal * 80),
+          color: Colors.transparent,
+          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 30.0),
+          width: SizeConfig.blockSizeHorizontal * 80,
+        ),
         IconButton(
-          onPressed: () => widget.onChange(controller.text),
+          onPressed: () {
+            widget.onChange(_textController.text);
+            _textController.clear();
+          },
           icon: const Icon(Icons.send),
         )
       ],
@@ -43,7 +47,7 @@ class _InputSearchState extends State<InputSearch> {
 
   @override
   void dispose() {
-    controller.dispose();
+    _textController.dispose();
     super.dispose();
   }
 }

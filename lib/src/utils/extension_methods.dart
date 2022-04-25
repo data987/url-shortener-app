@@ -9,7 +9,7 @@ extension WidgetMethods on Widget {
   Widget container(
       {double? width,
       double? height,
-      Color color = Colors.white,
+      Color? color = Colors.white,
       EdgeInsetsGeometry? padding}) {
     return Container(
       child: this,

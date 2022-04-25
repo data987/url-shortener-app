@@ -66,7 +66,7 @@ class UrlShortenBloc extends HydratedBloc<UrlShortenEvent, UrlShortenState> {
 
   @override
   UrlShortenState? fromJson(Map<String, dynamic> json) {
-    if (json.isNotEmpty) {
+    if (json.isNotEmpty && json['url-shorten-list'].isNotEmpty) {
       final jsonToModel = UrlHistoryModel.fromJson(json);
       return UrlShortenState(
           status: UrlShortenStatus.shortenSuccess,

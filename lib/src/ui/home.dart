@@ -27,7 +27,10 @@ class HomeUi extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Recently shortened URLs'),
+              const Text(
+                'Recently shortened URLs',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ).paddingOnly(bottom: 30),
               BlocBuilder<UrlShortenBloc, UrlShortenState>(
                   builder: ((context, state) {
                 switch (state.status) {
@@ -42,7 +45,7 @@ class HomeUi extends StatelessWidget {
                 }
               })).flexible(),
             ],
-          ).paddingOnly(top: 20.0).expanded(),
+          ).paddingOnly(top: 20.0, left: 30.0, right: 30.0).expanded(),
         ],
       ).paddingOnly(top: 25.0),
     );
