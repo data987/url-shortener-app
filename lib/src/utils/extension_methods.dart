@@ -6,7 +6,20 @@ extension WidgetMethods on Widget {
   }
 
   Widget material() => Material(type: MaterialType.transparency, child: this);
-  Widget container() => Container(child: this);
+  Widget container(
+      {double? width,
+      double? height,
+      Color? color = Colors.white,
+      EdgeInsetsGeometry? padding}) {
+    return Container(
+      child: this,
+      padding: padding,
+      color: color,
+      width: width,
+      height: height,
+    );
+  }
+
   Widget showScrollbar() => Scrollbar(child: this);
   Widget singleChildScrollView() => SingleChildScrollView(child: this);
   Widget expanded() => Expanded(child: this);

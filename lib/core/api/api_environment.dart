@@ -2,12 +2,12 @@ import '../../environment_config.dart';
 
 class ApiEndpoints {
   ///
-  /// POST Login
+  /// POST get url shorten
   ///
   /// @deprecated [baseUrl]: Base of endpoint, only for dev or temporal cases
   ///
-  static String login({String? baseUrl}) {
+  static String postUrl({String? baseUrl}) {
     baseUrl = baseUrl ?? EnvironmentConfig.apiURL;
-    return "$baseUrl/v1/login";
+    return "$baseUrl/alias";
   }
 }

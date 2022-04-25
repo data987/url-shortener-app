@@ -9,11 +9,14 @@ class ApiProvider {
   http.Client httpClient;
   final HttpRequests _httpRequest = HttpRequests();
 
-  // Get User login: GET
-  Future<Map<String, dynamic>> getUserLogin(String token) async {
-    final String getLoginUrl = ApiEndpoints.login();
-    final loginResponse = await _httpRequest.get(
-        httpClient: httpClient, url: getLoginUrl, token: token);
-    return loginResponse;
+  // Get User login: POST
+  Future<Map<String, dynamic>> postUrlToShorten(String urlToShorten) async {
+    final String postUrl = ApiEndpoints.postUrl();
+    final urlShortenResponse = await _httpRequest.post(
+      httpClient: httpClient,
+      url: postUrl,
+      body: {'url': urlToShorten},
+    );
+    return urlShortenResponse;
   }
 }
