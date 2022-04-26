@@ -1,5 +1,5 @@
 name: url_shortener_app
-description: A new Flutter project.
+description: Short urls and save them in the history
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -27,7 +27,6 @@ dev_dependencies:
     sdk: flutter
   lints: ^1.0.1
   bloc_test: ^9.0.3
-  mockito: ^5.1.0
   mocktail: ^0.3.0
 
 # For information on the generic Dart part of this file, see the

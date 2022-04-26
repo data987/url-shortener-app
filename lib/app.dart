@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: const AliceDebugging(
-            child: HomeUi(), debugging: EnvironmentConfig.envValue == 'DEV'),
+            child: HomeUi(), debugging: EnvironmentConfig.envValue == 'PROD'),
       ),
     );
   }
