@@ -33,47 +33,41 @@ class CardItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RichText(
-              text: TextSpan(
-                  text: 'Alias: ',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: item.alias,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                        ))
-                  ]),
+            const Text(
+              'Alias: ',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
             ),
-            RichText(
-              text: TextSpan(
-                  text: 'Url: ',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: item.links?.self ?? 'There is no url',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                        ))
-                  ]),
+            Text(
+              item.alias,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
             ),
-            RichText(
-              text: TextSpan(
-                  text: 'Short:\n',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: item.links?.short ?? 'There is no url shorten',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                        ))
-                  ]),
+            const Text(
+              'Url: ',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+            Text(
+              item.links?.self ?? 'There is no url',
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            const Text(
+              'Short: ',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+            Text(
+              item.links?.short ?? 'There is no url shorten',
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
             ),
             Row(
               children: [

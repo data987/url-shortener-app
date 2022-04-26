@@ -8,5 +8,5 @@ UrlShorten fetchUrlDataMock = UrlShorten(
     alias: '9876',
     links: Links(self: 'data.io', short: 'short.com/alias/9876'));
 
-final UrlHistoryModel urlHistoryModelMock =
+UrlHistoryModel urlHistoryModelMock =
     UrlHistoryModel(urlShortenList: [fetchUrlMock]);

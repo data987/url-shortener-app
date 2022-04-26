@@ -21,7 +21,7 @@ void main() {
       ).material(),
     ));
     expect(find.byType(Column), findsOneWidget);
-    expect(find.byType(RichText), findsNWidgets(5));
+    expect(find.byType(Text), findsNWidgets(6));
     expect(find.byType(IconButton), findsNWidgets(2));
   });
 

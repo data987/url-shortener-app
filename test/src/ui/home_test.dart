@@ -10,6 +10,7 @@ import 'package:url_shortener_app/src/ui/home.dart';
 import 'package:url_shortener_app/src/widgets/index.dart';
 
 import '../../helpers/widget_base_tester.dart';
+import '../../mocks.dart';
 
 class MockHomRepository extends Mock implements HomeRepository {}
 
@@ -88,6 +89,52 @@ void main() {
         ),
       ));
       expect(find.byType(CustomAnimateList), findsOneWidget);
+    });
+
+    testWidgets('Testing search input', (tester) async {
+      when(() => mockUrlShortenBloc.state).thenReturn(UrlShortenState(
+          status: UrlShortenStatus.shortenSuccess,
+          urlShortenHistory: urlHistoryModelMock));
+      await tester.pumpWidget(widgetBaseTester(
+        RepositoryProvider.value(
+          value: mockWeatherRepository,
+          child: BlocProvider.value(
+            value: mockUrlShortenBloc,
+            child: const HomeUi(),
+          ),
+        ),
+      ));
+
+      await tester.enterText(
+          find.byKey(const Key('text-field-search')), 'mypage.com');
+      await tester.tap(find.byKey(const Key('search-button')));
+      verify(() => mockUrlShortenBloc.add(const UrlsShortenFetch('mypage.com')))
+          .called(1);
+      expect(find.text('mypage.com'), findsOneWidget);
+      expect(find.text("1234"), findsOneWidget);
+    });
+
+    testWidgets('Testing when the user removes an url from the history',
+        (tester) async {
+      when(() => mockUrlShortenBloc.state).thenReturn(UrlShortenState(
+          status: UrlShortenStatus.shortenSuccess,
+          urlShortenHistory: urlHistoryModelMock));
+      await tester.pumpWidget(widgetBaseTester(
+        RepositoryProvider.value(
+          value: mockWeatherRepository,
+          child: BlocProvider.value(
+            value: mockUrlShortenBloc,
+            child: const HomeUi(),
+          ),
+        ),
+      ));
+
+      expect(find.byKey(const Key('remove-item-1234-button')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('remove-item-1234-button')));
+      await tester.pumpAndSettle();
+      verify(() => mockUrlShortenBloc.add(const RemovesUrl('1234'))).called(1);
+      expect(find.text('mypage.com'), findsNothing);
+      expect(find.text("1234"), findsNothing);
     });
   });
 }

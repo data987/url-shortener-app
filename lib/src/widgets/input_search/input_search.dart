@@ -28,6 +28,7 @@ class _InputSearchState extends State<InputSearch> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextField(
+          key: const Key('text-field-search'),
           controller: _textController,
         ).container(
           color: Colors.transparent,
@@ -35,6 +36,7 @@ class _InputSearchState extends State<InputSearch> {
           width: SizeConfig.blockSizeHorizontal * 80,
         ),
         IconButton(
+          key: const Key('search-button'),
           onPressed: () {
             widget.onPressed(_textController.text);
             _textController.clear();
