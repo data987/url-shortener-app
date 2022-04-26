@@ -21,8 +21,8 @@ void main() {
       ).material(),
     ));
     expect(find.byType(Column), findsOneWidget);
-    expect(find.byType(Text), findsNWidgets(6));
-    expect(find.byType(IconButton), findsNWidgets(2));
+    expect(find.byType(Text), findsNWidgets(7));
+    expect(find.byKey(const Key('remove-item-1234-button')), findsOneWidget);
   });
 
   testWidgets('Test onPressed button', (tester) async {

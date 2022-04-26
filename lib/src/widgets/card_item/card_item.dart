@@ -33,29 +33,37 @@ class CardItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Alias: ',
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            Row(
+              children: [
+                const Text(
+                  'Alias: ',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                Text(
+                  item.alias,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
             ),
-            Text(
-              item.alias,
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            const Text(
-              'Url: ',
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-            ),
-            Text(
-              item.links?.self ?? 'There is no url',
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w400,
-              ),
+            Row(
+              children: [
+                const Text(
+                  'Url: ',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                Text(
+                  item.links?.self ?? 'There is no url',
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
             ),
             const Text(
               'Short: ',
@@ -69,19 +77,15 @@ class CardItem extends StatelessWidget {
                 fontWeight: FontWeight.w400,
               ),
             ),
-            Row(
-              children: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.copy))
-                    .paddingOnly(right: 10.0),
-                IconButton(
-                    key: Key('remove-item-${item.alias}-button'),
-                    onPressed: onDelete,
-                    icon: Icon(
-                      Icons.delete_outline_outlined,
-                      color: Colors.red[400],
-                    ))
-              ],
-            ),
+            TextButton.icon(
+                key: Key('remove-item-${item.alias}-button'),
+                onPressed: onDelete,
+                icon: Icon(
+                  Icons.delete_outline_outlined,
+                  color: Colors.red[400],
+                ),
+                label: Text('Delete item',
+                    style: TextStyle(fontSize: 15, color: Colors.red[400])))
           ],
         ),
       ),
