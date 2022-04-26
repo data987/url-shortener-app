@@ -1,15 +1,12 @@
-import 'dart:math';
-
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:url_shortener_app/core/bloc/index.dart';
 import 'package:url_shortener_app/environment_config.dart';
-import 'package:url_shortener_app/src/ui/home.dart';
 import 'package:url_shortener_app/src/widgets/index.dart';
 
-import '../../../widget_base_tester.dart';
+import '../../../helpers/widget_base_tester.dart';
 
 class MockUrlShortenBloc extends MockBloc<UrlShortenEvent, UrlShortenState>
     implements UrlShortenBloc {}

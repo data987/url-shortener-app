@@ -2,6 +2,13 @@ part of 'url_shorten_bloc.dart';
 
 enum UrlShortenStatus { initial, loading, shortenSuccess, failure }
 
+extension UrlShortenStatusTest on UrlShortenStatus {
+  bool get isInitial => this == UrlShortenStatus.initial;
+  bool get isLoading => this == UrlShortenStatus.loading;
+  bool get isShortenSuccess => this == UrlShortenStatus.shortenSuccess;
+  bool get isFailure => this == UrlShortenStatus.failure;
+}
+
 class UrlShortenState extends Equatable {
   const UrlShortenState({
     this.status = UrlShortenStatus.initial,
@@ -27,5 +34,5 @@ class UrlShortenState extends Equatable {
   }
 
   @override
-  List<Object> get props => [status, urlShortenHistory];
+  List<Object?> get props => [status, urlShortenHistory];
 }

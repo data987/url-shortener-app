@@ -4,7 +4,7 @@ import 'package:url_shortener_app/core/models/index.dart';
 import 'package:url_shortener_app/src/widgets/index.dart';
 import 'package:url_shortener_app/src/utils/extension_methods.dart';
 
-import '../../../widget_base_tester.dart';
+import '../../../helpers/widget_base_tester.dart';
 
 void main() {
   testWidgets('card item structure', (tester) async {

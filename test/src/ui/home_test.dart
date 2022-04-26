@@ -9,7 +9,7 @@ import 'package:url_shortener_app/core/repositories/repositories.dart';
 import 'package:url_shortener_app/src/ui/home.dart';
 import 'package:url_shortener_app/src/widgets/index.dart';
 
-import '../../widget_base_tester.dart';
+import '../../helpers/widget_base_tester.dart';
 
 class MockHomRepository extends Mock implements HomeRepository {}
 
