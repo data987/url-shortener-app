@@ -4,14 +4,12 @@ import 'package:url_shortener_app/src/widgets/index.dart';
 
 import '../../core/bloc/index.dart';
 import '../utils/extension_methods.dart';
-import '../utils/size_config.dart';
 
 class HomeUi extends StatelessWidget {
   const HomeUi({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Url Shortener'),
@@ -21,7 +19,7 @@ class HomeUi extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           InputSearch(
-            onChange: (value) =>
+            onPressed: (value) =>
                 context.read<UrlShortenBloc>().add(UrlsShortenFetch(value)),
           ),
           Column(
@@ -37,6 +35,9 @@ class HomeUi extends StatelessWidget {
                   case UrlShortenStatus.shortenSuccess:
                     return CustomAnimateList(
                       urlList: state.urlShortenHistory.urlShortenList,
+                      onDelete: (item) => context
+                          .read<UrlShortenBloc>()
+                          .add(RemovesUrl(item.alias)),
                     );
                   case UrlShortenStatus.loading:
                     return const CircularProgressIndicator().center();

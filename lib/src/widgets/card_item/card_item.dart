@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../core/models/url_shorten_model.dart';
-import '../../utils/extension_methods.dart';
-import '../../utils/size_config.dart';
 
 class CardItem extends StatelessWidget {
   const CardItem({
@@ -17,7 +15,6 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return SizeTransition(
       key: key,
       sizeFactor: animation,
@@ -35,51 +32,59 @@ class CardItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RichText(
-              text: TextSpan(
-                  text: 'Alias: ',
-                  style: const TextStyle(
+            Row(
+              children: [
+                const Text(
+                  'Alias: ',
+                  style: TextStyle(
                       fontWeight: FontWeight.bold, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: item.alias,
-                        style: const TextStyle(fontWeight: FontWeight.w400))
-                  ]),
-            ),
-            RichText(
-              text: TextSpan(
-                  text: 'Url: ',
+                ),
+                Text(
+                  item.alias,
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: item.links?.self ?? 'There is no url',
-                        style: const TextStyle(fontWeight: FontWeight.w400))
-                  ]),
-            ),
-            RichText(
-              text: TextSpan(
-                  text: 'Short:\n',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: item.links?.short ?? 'There is no url shorten',
-                        style: const TextStyle(fontWeight: FontWeight.w400))
-                  ]),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
             ),
             Row(
               children: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.copy))
-                    .paddingOnly(right: 10.0),
-                IconButton(
-                    onPressed: onDelete,
-                    icon: Icon(
-                      Icons.delete_outline_outlined,
-                      color: Colors.red[400],
-                    ))
+                const Text(
+                  'Url: ',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                Text(
+                  item.links?.self ?? 'There is no url',
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
+            const Text(
+              'Short: ',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+            Text(
+              item.links?.short ?? 'There is no url shorten',
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            TextButton.icon(
+                key: Key('remove-item-${item.alias}-button'),
+                onPressed: onDelete,
+                icon: Icon(
+                  Icons.delete_outline_outlined,
+                  color: Colors.red[400],
+                ),
+                label: Text('Delete item',
+                    style: TextStyle(fontSize: 15, color: Colors.red[400])))
           ],
         ),
       ),

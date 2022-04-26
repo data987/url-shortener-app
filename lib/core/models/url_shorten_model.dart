@@ -1,11 +1,3 @@
-import 'dart:convert';
-
-UrlHistoryModel urlShortenModelFromJson(String str) =>
-    UrlHistoryModel.fromJson(json.decode(str));
-
-String urlShortenModelToJson(UrlHistoryModel data) =>
-    json.encode(data.toJson());
-
 class UrlHistoryModel {
   UrlHistoryModel({required this.urlShortenList});
 

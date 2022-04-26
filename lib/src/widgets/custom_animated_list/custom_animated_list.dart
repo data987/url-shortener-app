@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:url_shortener_app/core/bloc/index.dart';
 
 import '../../../core/models/url_shorten_model.dart';
 import '../card_item/card_item.dart';
 
 class CustomAnimateList extends StatefulWidget {
-  const CustomAnimateList({Key? key, required this.urlList}) : super(key: key);
+  const CustomAnimateList(
+      {Key? key, required this.urlList, required this.onDelete})
+      : super(key: key);
 
   final List<UrlShorten> urlList;
+  final Function(UrlShorten) onDelete;
 
   @override
   State<CustomAnimateList> createState() => _CustomAnimateListState();
@@ -50,7 +51,7 @@ class _CustomAnimateListState extends State<CustomAnimateList> {
   }
 
   _deleteItem(BuildContext context, int index, Animation<double> animation) {
-    var item = widget.urlList.removeAt(index);
+    UrlShorten item = widget.urlList.removeAt(index);
     AnimatedList.of(context).removeItem(index, (context, animation) {
       return FadeTransition(
         opacity:
@@ -64,7 +65,7 @@ class _CustomAnimateListState extends State<CustomAnimateList> {
       );
     }, duration: const Duration(milliseconds: 500));
     Future.delayed(const Duration(milliseconds: 300), () {
-      return context.read<UrlShortenBloc>().add(RemovesUrl(item.alias));
+      return widget.onDelete(item);
     });
   }
 }

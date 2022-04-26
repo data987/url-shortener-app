@@ -4,9 +4,9 @@ import 'package:url_shortener_app/src/utils/extension_methods.dart';
 import '../../utils/size_config.dart';
 
 class InputSearch extends StatefulWidget {
-  const InputSearch({Key? key, required this.onChange}) : super(key: key);
+  const InputSearch({Key? key, required this.onPressed}) : super(key: key);
 
-  final Function(String) onChange;
+  final Function(String) onPressed;
 
   @override
   State<InputSearch> createState() => _InputSearchState();
@@ -28,6 +28,7 @@ class _InputSearchState extends State<InputSearch> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextField(
+          key: const Key('text-field-search'),
           controller: _textController,
         ).container(
           color: Colors.transparent,
@@ -35,8 +36,9 @@ class _InputSearchState extends State<InputSearch> {
           width: SizeConfig.blockSizeHorizontal * 80,
         ),
         IconButton(
+          key: const Key('search-button'),
           onPressed: () {
-            widget.onChange(_textController.text);
+            widget.onPressed(_textController.text);
             _textController.clear();
           },
           icon: const Icon(Icons.send),
